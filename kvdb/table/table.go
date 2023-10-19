@@ -14,6 +14,11 @@ type Table struct {
 	underlying kvdb.Store
 }
 
+func (t *Table) AncientDatadir() (string, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
 var (
 	// NOTE: key collisions are possible
 	separator = []byte{}

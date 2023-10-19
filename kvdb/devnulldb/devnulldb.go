@@ -7,6 +7,11 @@ import (
 // Database is an always empty database.
 type Database struct{}
 
+func (db *Database) AncientDatadir() (string, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
 // New returns an always empty database.
 func New() *Database {
 	return &Database{}

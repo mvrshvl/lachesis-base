@@ -12,6 +12,11 @@ type wrapper struct {
 	underlying kvdb.Store
 }
 
+func (f *wrapper) AncientDatadir() (string, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
 type readWrapper struct {
 	reader kvdb.IteratedReader
 

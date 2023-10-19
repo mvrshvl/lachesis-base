@@ -26,6 +26,11 @@ type Flushable struct {
 	sizeEstimation *int
 }
 
+func (w *Flushable) AncientDatadir() (string, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
 type flushableReader struct {
 	underlying kvdb.IteratedReader
 

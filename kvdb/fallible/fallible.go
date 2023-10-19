@@ -19,6 +19,11 @@ type Fallible struct {
 	writes int32
 }
 
+func (f *Fallible) AncientDatadir() (string, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
 // Wrap returns a wrapped kvdb.Store with counter 0. Set it manually.
 func Wrap(db kvdb.Store) *Fallible {
 	return &Fallible{

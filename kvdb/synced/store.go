@@ -12,6 +12,11 @@ type store struct {
 	underlying kvdb.Store
 }
 
+func (s *store) AncientDatadir() (string, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
 // WrapStore underlying db to make its methods synced with mu.
 func WrapStore(parent kvdb.Store, mu *sync.RWMutex) kvdb.Store {
 	s := &store{

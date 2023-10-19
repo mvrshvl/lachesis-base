@@ -24,6 +24,11 @@ type Database struct {
 	onDrop  func()
 }
 
+func (db *Database) AncientDatadir() (string, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
 // adjustCache scales down cache to match "real" RAM usage by process
 var adjustCache = piecefunc.NewFunc([]piecefunc.Dot{
 	{

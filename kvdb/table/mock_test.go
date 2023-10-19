@@ -55,6 +55,11 @@ type MockDropableStore struct {
 	recorder *MockDropableStoreMockRecorder
 }
 
+func (m *MockDropableStore) AncientDatadir() (string, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
 // MockDropableStoreMockRecorder is the mock recorder for MockDropableStore.
 type MockDropableStoreMockRecorder struct {
 	mock *MockDropableStore
