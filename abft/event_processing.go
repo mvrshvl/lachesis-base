@@ -153,7 +153,6 @@ func (p *Orderer) forklessCausedByQuorumOn(e dag.Event, f idx.Frame) bool {
 	// check "observing" prev roots only if called by creator, or if creator has marked that event as root
 	for _, it := range p.store.GetFrameRoots(f) {
 		fmt.Println("forkless cause", e.ID(), e.Creator(), "AND", it.ID)
-
 		if p.dagIndex.ForklessCause(e.ID(), it.ID) {
 			observedCounter.Count(it.Slot.Validator)
 		}
