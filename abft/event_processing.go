@@ -1,6 +1,7 @@
 package abft
 
 import (
+	"fmt"
 	"github.com/pkg/errors"
 
 	"github.com/Fantom-foundation/lachesis-base/abft/election"
@@ -34,6 +35,7 @@ func (p *Orderer) Build(e dag.MutableEvent) error {
 // All the event checkers must be launched.
 // Process is not safe for concurrent use.
 func (p *Orderer) Process(e dag.Event) (err error) {
+	fmt.Println("SAVE ROOT", e.ID(), e.Creator())
 	err, selfParentFrame := p.checkAndSaveEvent(e)
 	if err != nil {
 		return err
@@ -151,6 +153,7 @@ func (p *Orderer) forklessCausedByQuorumOn(e dag.Event, f idx.Frame) bool {
 	// check "observing" prev roots only if called by creator, or if creator has marked that event as root
 	for _, it := range p.store.GetFrameRoots(f) {
 		if p.dagIndex.ForklessCause(e.ID(), it.ID) {
+			fmt.Println("forkless cause", e.ID(), e.Creator(), "AND", it.ID)
 			observedCounter.Count(it.Slot.Validator)
 		}
 		if observedCounter.HasQuorum() {

@@ -1,6 +1,7 @@
 package election
 
 import (
+	"fmt"
 	"github.com/Fantom-foundation/lachesis-base/hash"
 	"github.com/Fantom-foundation/lachesis-base/inter/idx"
 	"github.com/Fantom-foundation/lachesis-base/inter/pos"
@@ -78,6 +79,9 @@ func New(
 // Reset erases the current election state, prepare for new election frame
 func (el *Election) Reset(validators *pos.Validators, frameToDecide idx.Frame) {
 	el.validators = validators
+	if frameToDecide > 1 {
+		fmt.Print("AA")
+	}
 	el.frameToDecide = frameToDecide
 	el.votes = make(map[voteID]voteValue)
 	el.decidedRoots = make(map[idx.ValidatorID]voteValue)
