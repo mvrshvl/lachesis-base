@@ -36,6 +36,8 @@ func (el *Election) ProcessRoot(newRoot RootAndSlot) (*Res, error) {
 		observedRoots = el.observedRoots(newRoot.ID, newRoot.Slot.Frame-1)
 	}
 
+	fmt.Println("ROOTS", observedRootsMap, len(observedRoots), len(notDecidedRoots), newRoot.ID, "ROUND", round)
+
 	for _, validatorSubject := range notDecidedRoots {
 		vote := voteValue{}
 
