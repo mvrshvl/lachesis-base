@@ -2,6 +2,7 @@ package abft
 
 import (
 	"errors"
+	"fmt"
 	"math"
 	"math/rand"
 	"testing"
@@ -124,6 +125,10 @@ func testLachesisRandomAndReset(t *testing.T, weights []pos.Weight, mutateWeight
 					return errors.New("epoch already sealed, skip")
 				}
 				e.SetEpoch(epoch)
+
+				for _, p := range e.Parents() {
+					fmt.Println("ID", e.ID(), "PARENT", p)
+				}
 				return lchs[0].Build(e)
 			},
 		})
