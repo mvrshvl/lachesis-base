@@ -16,6 +16,8 @@ func (el *Election) ProcessRoot(newRoot RootAndSlot) (*Res, error) {
 		return res, err
 	}
 
+	fmt.Println("NEW ROOT", newRoot.Slot.Frame, newRoot.ID, el.frameToDecide)
+
 	if newRoot.Slot.Frame <= el.frameToDecide {
 		// too old root, out of interest for current election
 		return nil, nil
