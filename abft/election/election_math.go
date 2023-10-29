@@ -62,6 +62,7 @@ func (el *Election) ProcessRoot(newRoot RootAndSlot) (*Res, error) {
 			var subjectHash *hash.Event
 			for _, observedRoot := range observedRoots {
 				fmt.Println("obs", observedRoot, validatorSubject)
+
 				vid := voteID{
 					fromRoot:     observedRoot,
 					forValidator: validatorSubject,
