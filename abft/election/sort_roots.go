@@ -2,6 +2,7 @@ package election
 
 import (
 	"errors"
+	"fmt"
 )
 
 // Chooses the decided "yes" roots with the greatest weight amount.
@@ -14,6 +15,8 @@ func (el *Election) chooseAtropos() (*Res, error) {
 		if !ok {
 			return nil, nil // not decided
 		}
+
+		fmt.Println("ROOT", vote.observedRoot)
 		if vote.yes {
 			return &Res{
 				Frame:   el.frameToDecide,
