@@ -126,10 +126,19 @@ func testLachesisRandomAndReset(t *testing.T, weights []pos.Weight, mutateWeight
 				}
 				e.SetEpoch(epoch)
 
-				for _, p := range e.Parents() {
-					fmt.Println("ID", e.ID(), "PARENT", p)
+				err := lchs[0].Build(e)
+				if err != nil {
+					return err
 				}
-				return lchs[0].Build(e)
+
+				blocks := ""
+				for _, block := range lchs[0].blocks {
+					blocks += fmt.Sprintf("block: %s; ", block.Atropos)
+				}
+
+				fmt.Println("PARENTS", e.String(), "BLOCKS", blocks)
+
+				return nil
 			},
 		})
 		if lchs[0].store.GetEpoch() != epoch+1 {
