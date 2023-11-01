@@ -2,7 +2,7 @@ package vecengine
 
 import (
 	"errors"
-
+	"fmt"
 	"github.com/ethereum/go-ethereum/rlp"
 
 	"github.com/Fantom-foundation/lachesis-base/hash"
@@ -39,6 +39,8 @@ func (vi *Engine) getRlp(table kvdb.Store, key []byte, to interface{}) interface
 
 func (vi *Engine) getBytes(table kvdb.Store, id hash.Event) []byte {
 	key := id.Bytes()
+	fmt.Println("GET ID", id, "KEY", key)
+
 	b, err := table.Get(key)
 	if err != nil {
 		vi.crit(err)
@@ -48,6 +50,9 @@ func (vi *Engine) getBytes(table kvdb.Store, id hash.Event) []byte {
 
 func (vi *Engine) setBytes(table kvdb.Store, id hash.Event, b []byte) {
 	key := id.Bytes()
+
+	fmt.Println("SET ID", id, "KEY", key)
+
 	err := table.Put(key, b)
 	if err != nil {
 		vi.crit(err)
