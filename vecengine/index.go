@@ -229,7 +229,7 @@ func (vi *Engine) fillEventVectors(e dag.Event) (allVecs, error) {
 	// store calculated vectors
 	vi.callback.SetHighestBefore(e.ID(), myVecs.before)
 	vi.callback.SetLowestAfter(e.ID(), myVecs.after)
-	fmt.Println("SET EVENt BRANCH ID", e.ID(), meBranchID, vi.index)
+	fmt.Println("SET EVENt BRANCH ID", e.ID().Bytes(), meBranchID, vi.index)
 	vi.SetEventBranchID(e.ID(), meBranchID)
 
 	return myVecs, nil
