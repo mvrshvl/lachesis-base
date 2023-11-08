@@ -25,6 +25,7 @@ type Callbacks struct {
 }
 
 type Engine struct {
+	index         uint32
 	crit          func(error)
 	validators    *pos.Validators
 	validatorIdxs map[idx.ValidatorID]idx.Validator
@@ -43,10 +44,11 @@ type Engine struct {
 }
 
 // NewIndex creates Engine instance.
-func NewIndex(crit func(error), callbacks Callbacks) *Engine {
+func NewIndex(crit func(error), callbacks Callbacks, index uint32) *Engine {
 	vi := &Engine{
 		crit:     crit,
 		callback: callbacks,
+		index:    index,
 	}
 
 	return vi
@@ -227,7 +229,7 @@ func (vi *Engine) fillEventVectors(e dag.Event) (allVecs, error) {
 	// store calculated vectors
 	vi.callback.SetHighestBefore(e.ID(), myVecs.before)
 	vi.callback.SetLowestAfter(e.ID(), myVecs.after)
-	fmt.Println("SET EVENt BRANCH ID", e.ID(), meBranchID, &vi)
+	fmt.Println("SET EVENt BRANCH ID", e.ID(), meBranchID, vi.index)
 	vi.SetEventBranchID(e.ID(), meBranchID)
 
 	return myVecs, nil
