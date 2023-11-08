@@ -39,7 +39,7 @@ func (vi *Engine) getRlp(table kvdb.Store, key []byte, to interface{}) interface
 
 func (vi *Engine) getBytes(table kvdb.Store, id hash.Event) []byte {
 	key := id.Bytes()
-	fmt.Println("GET ID", id, "KEY", key)
+	fmt.Println("GET ID", id, "KEY", key, "INDEX", vi.index)
 
 	b, err := table.Get(key)
 	if err != nil {
@@ -51,7 +51,7 @@ func (vi *Engine) getBytes(table kvdb.Store, id hash.Event) []byte {
 func (vi *Engine) setBytes(table kvdb.Store, id hash.Event, b []byte) {
 	key := id.Bytes()
 
-	fmt.Println("SET ID", id, "KEY", key)
+	fmt.Println("SET ID", id, "KEY", key, "INDEX", vi.index)
 
 	err := table.Put(key, b)
 	if err != nil {
